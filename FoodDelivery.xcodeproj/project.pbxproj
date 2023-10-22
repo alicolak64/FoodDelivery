@@ -16,6 +16,11 @@
 		E6872AE42AE58AD7000F7BF3 /* FoodDeliveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872AE32AE58AD7000F7BF3 /* FoodDeliveryTests.swift */; };
 		E6872AEE2AE58AD7000F7BF3 /* FoodDeliveryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872AED2AE58AD7000F7BF3 /* FoodDeliveryUITests.swift */; };
 		E6872AF02AE58AD7000F7BF3 /* FoodDeliveryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872AEF2AE58AD7000F7BF3 /* FoodDeliveryUITestsLaunchTests.swift */; };
+		E6872B032AE5E4AA000F7BF3 /* MenuScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872B022AE5E4AA000F7BF3 /* MenuScreenViewController.swift */; };
+		E6872B052AE5E4D4000F7BF3 /* OfferScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872B042AE5E4D4000F7BF3 /* OfferScreenViewController.swift */; };
+		E6872B072AE5E4E5000F7BF3 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872B062AE5E4E5000F7BF3 /* HomeScreenViewController.swift */; };
+		E6872B092AE5E4FF000F7BF3 /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872B082AE5E4FF000F7BF3 /* ProfileScreenViewController.swift */; };
+		E6872B0B2AE5E50F000F7BF3 /* MoreScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872B0A2AE5E50F000F7BF3 /* MoreScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		E6872AE92AE58AD7000F7BF3 /* FoodDeliveryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodDeliveryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6872AED2AE58AD7000F7BF3 /* FoodDeliveryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDeliveryUITests.swift; sourceTree = "<group>"; };
 		E6872AEF2AE58AD7000F7BF3 /* FoodDeliveryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDeliveryUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E6872B022AE5E4AA000F7BF3 /* MenuScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreenViewController.swift; sourceTree = "<group>"; };
+		E6872B042AE5E4D4000F7BF3 /* OfferScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferScreenViewController.swift; sourceTree = "<group>"; };
+		E6872B062AE5E4E5000F7BF3 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		E6872B082AE5E4FF000F7BF3 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
+		E6872B0A2AE5E50F000F7BF3 /* MoreScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +109,9 @@
 		E6872ACB2AE58AD6000F7BF3 /* FoodDelivery */ = {
 			isa = PBXGroup;
 			children = (
-				E6872ACC2AE58AD6000F7BF3 /* AppDelegate.swift */,
-				E6872ACE2AE58AD6000F7BF3 /* SceneDelegate.swift */,
-				E6872AD02AE58AD6000F7BF3 /* ViewController.swift */,
-				E6872AD22AE58AD6000F7BF3 /* Main.storyboard */,
-				E6872AD52AE58AD7000F7BF3 /* Assets.xcassets */,
-				E6872AD72AE58AD7000F7BF3 /* LaunchScreen.storyboard */,
 				E6872ADA2AE58AD7000F7BF3 /* Info.plist */,
+				E6872B002AE5CBB9000F7BF3 /* Helpers */,
+				E6872AFC2AE5C815000F7BF3 /* Views */,
 			);
 			path = FoodDelivery;
 			sourceTree = "<group>";
@@ -125,6 +131,39 @@
 				E6872AEF2AE58AD7000F7BF3 /* FoodDeliveryUITestsLaunchTests.swift */,
 			);
 			path = FoodDeliveryUITests;
+			sourceTree = "<group>";
+		};
+		E6872AFC2AE5C815000F7BF3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E6872B012AE5E465000F7BF3 /* Screens */,
+				E6872AD02AE58AD6000F7BF3 /* ViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E6872B002AE5CBB9000F7BF3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E6872ACC2AE58AD6000F7BF3 /* AppDelegate.swift */,
+				E6872ACE2AE58AD6000F7BF3 /* SceneDelegate.swift */,
+				E6872AD22AE58AD6000F7BF3 /* Main.storyboard */,
+				E6872AD52AE58AD7000F7BF3 /* Assets.xcassets */,
+				E6872AD72AE58AD7000F7BF3 /* LaunchScreen.storyboard */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E6872B012AE5E465000F7BF3 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E6872B022AE5E4AA000F7BF3 /* MenuScreenViewController.swift */,
+				E6872B042AE5E4D4000F7BF3 /* OfferScreenViewController.swift */,
+				E6872B062AE5E4E5000F7BF3 /* HomeScreenViewController.swift */,
+				E6872B082AE5E4FF000F7BF3 /* ProfileScreenViewController.swift */,
+				E6872B0A2AE5E50F000F7BF3 /* MoreScreenViewController.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +297,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6872B052AE5E4D4000F7BF3 /* OfferScreenViewController.swift in Sources */,
+				E6872B092AE5E4FF000F7BF3 /* ProfileScreenViewController.swift in Sources */,
 				E6872AD12AE58AD6000F7BF3 /* ViewController.swift in Sources */,
+				E6872B0B2AE5E50F000F7BF3 /* MoreScreenViewController.swift in Sources */,
+				E6872B032AE5E4AA000F7BF3 /* MenuScreenViewController.swift in Sources */,
 				E6872ACD2AE58AD6000F7BF3 /* AppDelegate.swift in Sources */,
 				E6872ACF2AE58AD6000F7BF3 /* SceneDelegate.swift in Sources */,
+				E6872B072AE5E4E5000F7BF3 /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
