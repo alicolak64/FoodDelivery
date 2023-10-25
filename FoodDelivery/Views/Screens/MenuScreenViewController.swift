@@ -11,8 +11,8 @@ class MenuScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Menu"
-        view.backgroundColor = .systemGray6
+        title = AppTabs.tab1.name
+        view.backgroundColor = AppColors.backgroundColor
     }
 
 }

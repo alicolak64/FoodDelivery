@@ -11,9 +11,8 @@ class ProfileScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Profile"
-        view.backgroundColor = .systemGray6
-
+        title = AppTabs.tab4.name
+        view.backgroundColor = AppColors.backgroundColor
     }
 
 }

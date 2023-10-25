@@ -11,49 +11,49 @@ class HomeScreenViewController: UIViewController {
     
     let greetingLabel: UILabel = {
         let label = UILabel()
-        label.text = "Good Morning Akila!"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.text = AppTexts.greetingText
+        label.font = AppFonts.primaryFont
         label.layer.borderColor = UIColor.black.cgColor
         label.textAlignment = .center
-        label.textColor = UIColor(hex: "#545557")
+        label.textColor = AppColors.primaryFontColor
         return label
     }()
     
     lazy var cartButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "cart.fill"), for: .normal)
-        button.tintColor = UIColor(hex: "#545557")
+        button.setImage(AppIcons.cartIcon, for: .normal)
+        button.tintColor = AppColors.primaryFontColor
         button.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
         return button
     }()
     
     let deliveringToLabel: UILabel = {
         let label = UILabel()
-        label.text = "Delivering to"
-        label.textColor = UIColor(hex: "#cdcdcd")
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.text = AppTexts.delivreingToText
+        label.textColor = AppColors.placeholderFontColor
+        label.font = AppFonts.placeholderFont
         return label
     }()
     
     lazy var currentLocationLabel: UILabel = {
         let label = UILabel()
-        label.text = "Current Location"
-        label.textColor = UIColor(hex: "#898a8b")
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.text = AppTexts.locationText
+        label.textColor = AppColors.secondaryFontColor
+        label.font = AppFonts.secondaryFont
         return label
     }()
     
     lazy var arrowDownButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "chevron.compact.down"), for: .normal)
-        button.tintColor = UIColor(hex: "#FB6B10")
+        button.setImage(AppIcons.arrowDownIcon, for: .normal)
+        button.tintColor = AppColors.mainColor
         button.addTarget(self, action: #selector(arrowDownButtonTapped), for: .touchUpInside)
         return button
     }()
         
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Search food"
+        searchBar.placeholder = AppTexts.searchBarPlaceholderText
         searchBar.barStyle = .default
         searchBar.searchBarStyle = .minimal
         searchBar.delegate = self
@@ -62,8 +62,9 @@ class HomeScreenViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = AppColors.backgroundColor
         
         addGreetingStack()
         
@@ -137,35 +138,10 @@ class HomeScreenViewController: UIViewController {
         ])
     }
     
-    
-    
-    @objc func cartButtonTapped() {
-        presentAlert(title: "Cart Clicked", message: "Cart button clicked!", buttonTitle: "OK")
-    }
-    
-    @objc func arrowDownButtonTapped() {
-        presentAlert(title: "Location Clicked", message: "Arrow Down Button clicked!", buttonTitle: "OK")
-    }
-    
 }
 
 
-extension HomeScreenViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = searchBar.text {
-            presentAlert(title: "Search Clicked", message: searchText + " searched!", buttonTitle: "OK")
-            searchBar.text = ""
-            searchBar.resignFirstResponder()
-        }
-    }
-    
-    func processSearchQuery(_ query: String) {
-        updateSearchResults(with: query)
-    }
-    
-    func updateSearchResults(with query: String) {
-    }
-}
+
 
 
 

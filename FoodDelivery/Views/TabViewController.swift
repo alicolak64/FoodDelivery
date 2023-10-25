@@ -12,7 +12,7 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addCustomTabItems()
-        self.selectedIndex = 2
+        self.selectedIndex = AppConstants.initialTab
     }
     
     override func loadView() {
@@ -23,16 +23,16 @@ class ViewController: UITabBarController {
     func setupCustomTabBar() {
         let shape = CAShapeLayer()
         shape.lineWidth = 0
-        if let strokeColor = UIColor(hex: "#FB6B10", alpha: 1.0)?.cgColor {
+        if let strokeColor = AppColors.mainColor?.cgColor {
             shape.strokeColor = strokeColor
         }
-        shape.fillColor = UIColor.white.cgColor
+        shape.fillColor = AppColors.whiteColor?.cgColor
         self.tabBar.layer.insertSublayer(shape, at: 0)
-        self.tabBar.backgroundColor = UIColor(hex: "#FFFFFF")
+        self.tabBar.backgroundColor = AppColors.whiteColor
         self.tabBar.itemWidth = 40
         self.tabBar.itemPositioning = .centered
         self.tabBar.itemSpacing = 180
-        if let tintColor = UIColor(hex: "#FB6B10", alpha: 1.0) {
+        if let tintColor = AppColors.mainColor {
             self.tabBar.tintColor = tintColor
         }
     }
@@ -44,20 +44,20 @@ class ViewController: UITabBarController {
         let profileScreenViewController = UINavigationController(rootViewController: ProfileScreenViewController())
         let moreScreenViewController = UINavigationController(rootViewController: MoreScreenViewController())
         
-        menuScreenViewController.title = "Menu"
-        offerScreenViewController.title = "Offers"
-        homeScreenViewController.title = "Home"
-        profileScreenViewController.title = "Profile"
-        moreScreenViewController.title = "More"
+        menuScreenViewController.title = AppTabs.tab1.name
+        offerScreenViewController.title = AppTabs.tab2.name
+        homeScreenViewController.title = AppTabs.tab3.name
+        profileScreenViewController.title = AppTabs.tab4.name
+        moreScreenViewController.title = AppTabs.tab5.name
         
         setViewControllers([menuScreenViewController, offerScreenViewController, homeScreenViewController, profileScreenViewController, moreScreenViewController], animated: true)
         
         guard let items = tabBar.items else { return }
-        items[0].image = UIImage(systemName: "square.grid.2x2.fill")
-        items[1].image = UIImage(systemName: "bag.fill")
-        items[2].image = UIImage(systemName: "house.fill")
-        items[3].image = UIImage(systemName: "person.fill")
-        items[4].image = UIImage(systemName: "ellipsis")
+        items[0].image = AppTabs.tab1.icon
+        items[1].image = AppTabs.tab2.icon
+        items[2].image = AppTabs.tab3.icon
+        items[3].image = AppTabs.tab4.icon
+        items[4].image = AppTabs.tab5.icon
     }
     
     

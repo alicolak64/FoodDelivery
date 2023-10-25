@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		E61EAFAD2AE6870600A056DB /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61EAFAC2AE6870600A056DB /* GeneralExtensions.swift */; };
+		E681C1442AE93FC30093E09E /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C1432AE93FC30093E09E /* AppColors.swift */; };
+		E681C1462AE942570093E09E /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C1452AE942570093E09E /* AppFonts.swift */; };
+		E681C1482AE943880093E09E /* AppTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C1472AE943880093E09E /* AppTexts.swift */; };
+		E681C14C2AE943D10093E09E /* AppTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C14B2AE943D10093E09E /* AppTabs.swift */; };
+		E681C14E2AE944A00093E09E /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C14D2AE944A00093E09E /* AppIcons.swift */; };
+		E681C1502AE9455D0093E09E /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C14F2AE9455D0093E09E /* AppConstants.swift */; };
+		E681C1522AE94CB40093E09E /* HomeScreenViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C1512AE94CB40093E09E /* HomeScreenViewControllerExtension.swift */; };
 		E6872ACD2AE58AD6000F7BF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872ACC2AE58AD6000F7BF3 /* AppDelegate.swift */; };
 		E6872ACF2AE58AD6000F7BF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872ACE2AE58AD6000F7BF3 /* SceneDelegate.swift */; };
-		E6872AD12AE58AD6000F7BF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872AD02AE58AD6000F7BF3 /* ViewController.swift */; };
+		E6872AD12AE58AD6000F7BF3 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6872AD02AE58AD6000F7BF3 /* TabViewController.swift */; };
 		E6872AD42AE58AD6000F7BF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6872AD22AE58AD6000F7BF3 /* Main.storyboard */; };
 		E6872AD62AE58AD7000F7BF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6872AD52AE58AD7000F7BF3 /* Assets.xcassets */; };
 		E6872AD92AE58AD7000F7BF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6872AD72AE58AD7000F7BF3 /* LaunchScreen.storyboard */; };
@@ -43,10 +50,17 @@
 
 /* Begin PBXFileReference section */
 		E61EAFAC2AE6870600A056DB /* GeneralExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
+		E681C1432AE93FC30093E09E /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		E681C1452AE942570093E09E /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		E681C1472AE943880093E09E /* AppTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTexts.swift; sourceTree = "<group>"; };
+		E681C14B2AE943D10093E09E /* AppTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabs.swift; sourceTree = "<group>"; };
+		E681C14D2AE944A00093E09E /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
+		E681C14F2AE9455D0093E09E /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		E681C1512AE94CB40093E09E /* HomeScreenViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewControllerExtension.swift; sourceTree = "<group>"; };
 		E6872AC92AE58AD6000F7BF3 /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6872ACC2AE58AD6000F7BF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6872ACE2AE58AD6000F7BF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E6872AD02AE58AD6000F7BF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E6872AD02AE58AD6000F7BF3 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		E6872AD32AE58AD6000F7BF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6872AD52AE58AD7000F7BF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6872AD82AE58AD7000F7BF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,8 +106,22 @@
 			isa = PBXGroup;
 			children = (
 				E61EAFAC2AE6870600A056DB /* GeneralExtensions.swift */,
+				E681C1512AE94CB40093E09E /* HomeScreenViewControllerExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E681C1422AE93F790093E09E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				E681C1432AE93FC30093E09E /* AppColors.swift */,
+				E681C1452AE942570093E09E /* AppFonts.swift */,
+				E681C1472AE943880093E09E /* AppTexts.swift */,
+				E681C14D2AE944A00093E09E /* AppIcons.swift */,
+				E681C14F2AE9455D0093E09E /* AppConstants.swift */,
+				E681C14B2AE943D10093E09E /* AppTabs.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		E6872AC02AE58AD5000F7BF3 = {
@@ -120,6 +148,9 @@
 			isa = PBXGroup;
 			children = (
 				E6872ADA2AE58AD7000F7BF3 /* Info.plist */,
+				E681C1422AE93F790093E09E /* Constants */,
+				E6E6D1712AE7CEE8000C440D /* Models */,
+				E6E6D1722AE7CEFE000C440D /* View Models */,
 				E61EAFA92AE6829A00A056DB /* Extensions */,
 				E6872B002AE5CBB9000F7BF3 /* Helpers */,
 				E6872AFC2AE5C815000F7BF3 /* Views */,
@@ -148,7 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				E6872B012AE5E465000F7BF3 /* Screens */,
-				E6872AD02AE58AD6000F7BF3 /* ViewController.swift */,
+				E6872AD02AE58AD6000F7BF3 /* TabViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +206,20 @@
 				E6872B0A2AE5E50F000F7BF3 /* MoreScreenViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		E6E6D1712AE7CEE8000C440D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E6E6D1722AE7CEFE000C440D /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,12 +355,19 @@
 			files = (
 				E61EAFAD2AE6870600A056DB /* GeneralExtensions.swift in Sources */,
 				E6872B052AE5E4D4000F7BF3 /* OfferScreenViewController.swift in Sources */,
+				E681C1482AE943880093E09E /* AppTexts.swift in Sources */,
 				E6872B092AE5E4FF000F7BF3 /* ProfileScreenViewController.swift in Sources */,
-				E6872AD12AE58AD6000F7BF3 /* ViewController.swift in Sources */,
+				E681C1502AE9455D0093E09E /* AppConstants.swift in Sources */,
+				E681C1442AE93FC30093E09E /* AppColors.swift in Sources */,
+				E6872AD12AE58AD6000F7BF3 /* TabViewController.swift in Sources */,
+				E681C1522AE94CB40093E09E /* HomeScreenViewControllerExtension.swift in Sources */,
+				E681C1462AE942570093E09E /* AppFonts.swift in Sources */,
 				E6872B0B2AE5E50F000F7BF3 /* MoreScreenViewController.swift in Sources */,
 				E6872B032AE5E4AA000F7BF3 /* MenuScreenViewController.swift in Sources */,
 				E6872ACD2AE58AD6000F7BF3 /* AppDelegate.swift in Sources */,
+				E681C14E2AE944A00093E09E /* AppIcons.swift in Sources */,
 				E6872ACF2AE58AD6000F7BF3 /* SceneDelegate.swift in Sources */,
+				E681C14C2AE943D10093E09E /* AppTabs.swift in Sources */,
 				E6872B072AE5E4E5000F7BF3 /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

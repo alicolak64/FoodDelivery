@@ -11,9 +11,8 @@ class OfferScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Offers"
-        view.backgroundColor = .systemGray6
-
+        title = AppTabs.tab2.name
+        view.backgroundColor = AppColors.backgroundColor
     }
 
 }

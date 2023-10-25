@@ -11,8 +11,8 @@ class MoreScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "More"
-        view.backgroundColor = .systemGray6
+        title = AppTabs.tab5.name
+        view.backgroundColor = AppColors.backgroundColor
     }
 
 }
