@@ -11,7 +11,8 @@ extension HomeScreenViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
             presentAlert(title: "Search Clicked", message: searchText + " searched!", buttonTitle: "OK")
-            searchBar.text = AppTexts.searchBarPlaceholderText
+            searchBar.text = ""
+            searchBar.placeholder = AppTexts.searchBarPlaceholderText
             searchBar.resignFirstResponder()
         }
     }
