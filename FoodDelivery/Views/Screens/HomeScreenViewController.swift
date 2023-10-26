@@ -6,8 +6,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeScreenViewController: UIViewController {
+    
+    var categoryList = [Category]()
+    var popularRestaurantList = [Restaurant]()
+    var mostPopularRestaurantList = [Restaurant]()
+    var recentlyItemsRestaurantList = [Restaurant]()
+
+    let disposeBag = DisposeBag()
+    
+    let viewModel = HomeScreenViewModel()
     
     let greetingLabel: UILabel = {
         let label = UILabel()
@@ -66,12 +77,94 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = AppColors.backgroundColor
         
+        setupBindings()
+        
+        viewModel.requestAllData()
+        
         addGreetingStack()
         
         addLocationStack()
         
         addSearchBar()
         
+        
+        
+        
+    }
+    
+    func setupBindings() {
+        
+        viewModel.categories
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { categories in
+                self.categoryList = categories
+                //self.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.categoriesError
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.popularRestaurants
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { resturants in
+                self.popularRestaurantList = resturants
+                //self.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.allResturantsError
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.mostPopularRestaurants
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { resturants in
+                self.mostPopularRestaurantList = resturants
+                //self.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.mostPopularRestaurantsError
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.recentlyItemsRestaurants
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { resturants in
+                self.recentlyItemsRestaurantList = resturants
+                //self.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.recentlyItemsRestaurantsError
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.loading
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { isLoading in
+                if isLoading {
+                    print("Open Animated")
+                } else {
+                    print("Close Animated")
+
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     
