@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E61EAFAD2AE6870600A056DB /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61EAFAC2AE6870600A056DB /* GeneralExtensions.swift */; };
+		E66A27912AEAC48F00463337 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E66A27902AEAC48F00463337 /* Kingfisher */; };
 		E681C1442AE93FC30093E09E /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C1432AE93FC30093E09E /* AppColors.swift */; };
 		E681C1462AE942570093E09E /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C1452AE942570093E09E /* AppFonts.swift */; };
 		E681C1482AE943880093E09E /* AppTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E681C1472AE943880093E09E /* AppTexts.swift */; };
@@ -41,6 +42,8 @@
 		E6A425982AE9F5AA00F7517A /* RxCocoa-Dynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = E6A425962AE9F5AA00F7517A /* RxCocoa-Dynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		E6A4259A2AE9F5AA00F7517A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = E6A425992AE9F5AA00F7517A /* RxRelay */; };
 		E6A4259C2AE9F5AA00F7517A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E6A4259B2AE9F5AA00F7517A /* RxSwift */; };
+		E6CF0DE72AEA998F00B34F81 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CF0DE62AEA998F00B34F81 /* CategoryCollectionViewCell.swift */; };
+		E6CF0DE92AEA9AE700B34F81 /* PopularRestaurantViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CF0DE82AEA9AE700B34F81 /* PopularRestaurantViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +109,8 @@
 		E6872B062AE5E4E5000F7BF3 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		E6872B082AE5E4FF000F7BF3 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
 		E6872B0A2AE5E50F000F7BF3 /* MoreScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreScreenViewController.swift; sourceTree = "<group>"; };
+		E6CF0DE62AEA998F00B34F81 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		E6CF0DE82AEA9AE700B34F81 /* PopularRestaurantViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +120,7 @@
 			files = (
 				E6A4259C2AE9F5AA00F7517A /* RxSwift in Frameworks */,
 				E6A4259A2AE9F5AA00F7517A /* RxRelay in Frameworks */,
+				E66A27912AEAC48F00463337 /* Kingfisher in Frameworks */,
 				E6A425972AE9F5AA00F7517A /* RxCocoa-Dynamic in Frameworks */,
 				E6A425952AE9F5AA00F7517A /* RxCocoa in Frameworks */,
 				E6A425902AE9F5AA00F7517A /* RxBlocking in Frameworks */,
@@ -225,8 +231,9 @@
 		E6872AFC2AE5C815000F7BF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E6CF0DEA2AEA9B4900B34F81 /* TabBar */,
 				E6872B012AE5E465000F7BF3 /* Screens */,
-				E6872AD02AE58AD6000F7BF3 /* TabViewController.swift */,
+				E6CF0DE52AEA8ACD00B34F81 /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +267,23 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6CF0DE52AEA8ACD00B34F81 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E6CF0DE62AEA998F00B34F81 /* CategoryCollectionViewCell.swift */,
+				E6CF0DE82AEA9AE700B34F81 /* PopularRestaurantViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E6CF0DEA2AEA9B4900B34F81 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E6872AD02AE58AD6000F7BF3 /* TabViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		E6E6D1712AE7CEE8000C440D /* Models */ = {
@@ -303,6 +327,7 @@
 				E6A425962AE9F5AA00F7517A /* RxCocoa-Dynamic */,
 				E6A425992AE9F5AA00F7517A /* RxRelay */,
 				E6A4259B2AE9F5AA00F7517A /* RxSwift */,
+				E66A27902AEAC48F00463337 /* Kingfisher */,
 			);
 			productName = FoodDelivery;
 			productReference = E6872AC92AE58AD6000F7BF3 /* FoodDelivery.app */;
@@ -378,6 +403,7 @@
 			mainGroup = E6872AC02AE58AD5000F7BF3;
 			packageReferences = (
 				E681C1662AE9F3450093E09E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				E66A278F2AEAC48F00463337 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = E6872ACA2AE58AD6000F7BF3 /* Products */;
 			projectDirPath = "";
@@ -433,6 +459,7 @@
 				E681C1442AE93FC30093E09E /* AppColors.swift in Sources */,
 				E6872AD12AE58AD6000F7BF3 /* TabViewController.swift in Sources */,
 				E681C1522AE94CB40093E09E /* HomeScreenViewControllerExtension.swift in Sources */,
+				E6CF0DE92AEA9AE700B34F81 /* PopularRestaurantViewCell.swift in Sources */,
 				E681C1462AE942570093E09E /* AppFonts.swift in Sources */,
 				E6872B0B2AE5E50F000F7BF3 /* MoreScreenViewController.swift in Sources */,
 				E6872B032AE5E4AA000F7BF3 /* MenuScreenViewController.swift in Sources */,
@@ -441,6 +468,7 @@
 				E6872ACF2AE58AD6000F7BF3 /* SceneDelegate.swift in Sources */,
 				E681C1542AE9CFB20093E09E /* Restaurant.swift in Sources */,
 				E681C14C2AE943D10093E09E /* AppTabs.swift in Sources */,
+				E6CF0DE72AEA998F00B34F81 /* CategoryCollectionViewCell.swift in Sources */,
 				E6872B072AE5E4E5000F7BF3 /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,6 +812,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E66A278F2AEAC48F00463337 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.9.1;
+			};
+		};
 		E681C1662AE9F3450093E09E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -795,6 +831,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E66A27902AEAC48F00463337 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E66A278F2AEAC48F00463337 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		E6A4258F2AE9F5AA00F7517A /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E681C1662AE9F3450093E09E /* XCRemoteSwiftPackageReference "RxSwift" */;

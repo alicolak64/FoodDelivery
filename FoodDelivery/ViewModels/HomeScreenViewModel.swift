@@ -139,7 +139,7 @@ class HomeScreenViewModel {
         if restaurants.count <= count {
             randomRestaurants = restaurants
         } else {
-            var shuffledRestaurants = restaurants.shuffled()
+            let shuffledRestaurants = restaurants.shuffled()
             for i in 0..<count {
                 randomRestaurants.append(shuffledRestaurants[i])
             }

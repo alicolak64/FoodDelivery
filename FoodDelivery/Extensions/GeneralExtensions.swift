@@ -33,7 +33,7 @@ extension UIColor {
 }
 
 extension UIViewController {
-    func presentAlert(title: String, message: String, buttonTitle: String, completion: (() -> Void)? = nil) {
+    func showAlert(title: String, message: String, buttonTitle: String, completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: buttonTitle, style: .default) { _ in
             completion?()

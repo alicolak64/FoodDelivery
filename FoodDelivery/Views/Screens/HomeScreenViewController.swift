@@ -15,7 +15,7 @@ class HomeScreenViewController: UIViewController {
     var popularRestaurantList = [Restaurant]()
     var mostPopularRestaurantList = [Restaurant]()
     var recentlyItemsRestaurantList = [Restaurant]()
-
+    
     let disposeBag = DisposeBag()
     
     let viewModel = HomeScreenViewModel()
@@ -61,7 +61,7 @@ class HomeScreenViewController: UIViewController {
         button.addTarget(self, action: #selector(arrowDownButtonTapped), for: .touchUpInside)
         return button
     }()
-        
+    
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = AppTexts.searchBarPlaceholderText
@@ -69,6 +69,26 @@ class HomeScreenViewController: UIViewController {
         searchBar.searchBarStyle = .minimal
         searchBar.delegate = self
         return searchBar
+    }()
+    
+    lazy var categoryCollectionView : UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 10
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 200, height: 150)
+        
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .white
+        collectionView.isScrollEnabled = true
+        collectionView.isUserInteractionEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        
+        return collectionView
+        
     }()
     
     
@@ -87,7 +107,15 @@ class HomeScreenViewController: UIViewController {
         
         addSearchBar()
         
+        self.view.layoutIfNeeded()
+                
+        categoryCollectionView.dataSource = self
+        categoryCollectionView.delegate = self
+
+        categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         
+
+        view.addSubview(categoryCollectionView)
         
         
     }
@@ -98,7 +126,11 @@ class HomeScreenViewController: UIViewController {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { categories in
                 self.categoryList = categories
-                //self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.view.layoutIfNeeded()
+                    self.categoryCollectionView.reloadData()
+                }
+    
             }
             .disposed(by: disposeBag)
         
@@ -161,7 +193,7 @@ class HomeScreenViewController: UIViewController {
                     print("Open Animated")
                 } else {
                     print("Close Animated")
-
+                    
                 }
             }
             .disposed(by: disposeBag)

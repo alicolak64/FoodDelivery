@@ -11,4 +11,5 @@ struct AppFonts {
     static let primaryFont = UIFont.boldSystemFont(ofSize: 22)
     static let secondaryFont = UIFont.systemFont(ofSize: 18)
     static let placeholderFont = UIFont.systemFont(ofSize: 14)
+    static let cardText = UIFont.systemFont(ofSize: 12)
 }

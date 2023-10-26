@@ -5,9 +5,11 @@
 //  Created by Ali Çolak on 25.10.2023.
 //
 
-import Foundation
+import UIKit
 
 struct AppConstants {
+    static let deviceWidth = UIScreen.main.bounds.width
+    static let deviceHeight = UIScreen.main.bounds.height
     static let initialTab = 2
     static let baseUrl = "https://alicolak64.github.io/FoodDeliveryDB/"
     static let getAllRestaurantsEndpoint = "allRestaurants.json"
