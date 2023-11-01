@@ -48,14 +48,53 @@ extension HomeScreenViewController {
 extension HomeScreenViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoryList.count
+        
+        if collectionView.tag == 1 {
+            return categoryList.count
+        } else if collectionView.tag == 2 {
+            return mostPopularRestaurantList.count
+        } else {
+            return 0
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let category = categoryList[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryViewCell.identifier, for: indexPath) as! CategoryViewCell
-        cell.configure(with: category)
-        return cell
+        
+        
+        if collectionView.tag == 1 {
+            
+            let category = categoryList[indexPath.row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryViewCell.identifier, for: indexPath) as! CategoryViewCell
+            cell.configure(with: category)
+            
+            return cell
+            
+        } else if collectionView.tag == 2 {
+            
+            let restaurant = mostPopularRestaurantList[indexPath.row]
+            let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: MostPopularViewCell.identifier, for: indexPath) as! MostPopularViewCell
+            
+            if let category = categoryList.first(where: { $0.id == restaurant.categoryId }) {
+                cell.configure(with: restaurant, category: category)
+            }
+            
+            return cell
+            
+        } else {
+            return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView.tag == 1 {
+            let category = categoryList[indexPath.row]
+            viewModel.changeCategory(categoryId: category.id)
+        } else if collectionView.tag == 2 {
+            let restaurant = mostPopularRestaurantList[indexPath.row]
+            showAlert(title: restaurant.name + " Clicked", message: restaurant.description, buttonTitle: "OK")
+        }
     }
     
     
@@ -65,23 +104,66 @@ extension HomeScreenViewController : UICollectionViewDelegate, UICollectionViewD
 extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return popularRestaurantList.count
+        
+        if tableView.tag == 1 {
+            return popularRestaurantList.count
+        } else if tableView.tag == 2 {
+            return recentlyItemsRestaurantList.count
+        } else {
+            return 0
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let restaurant = popularRestaurantList[indexPath.row]
-        let cell =  tableView.dequeueReusableCell(withIdentifier: PopularRestaurantViewCell.identifier, for: indexPath) as! PopularRestaurantViewCell
         
-        
-        if let category = categoryList.first(where: { $0.id == restaurant.categoryId }) {
-            cell.configure(with: restaurant, category: category)
+        if tableView.tag == 1 {
+            
+            let restaurant = popularRestaurantList[indexPath.row]
+            let cell =  tableView.dequeueReusableCell(withIdentifier: PopularRestaurantViewCell.identifier, for: indexPath) as! PopularRestaurantViewCell
+            
+            if let category = categoryList.first(where: { $0.id == restaurant.categoryId }) {
+                cell.configure(with: restaurant, category: category)
+            }
+            
+            return cell
+            
+        } else if tableView.tag == 2 {
+            
+            let restaurant = recentlyItemsRestaurantList[indexPath.row]
+            let cell =  tableView.dequeueReusableCell(withIdentifier: RecentItemsViewCell.identifier, for: indexPath) as! RecentItemsViewCell
+            
+            if let category = categoryList.first(where: { $0.id == restaurant.categoryId }) {
+                cell.configure(with: restaurant, category: category)
+            }
+            
+            return cell
+            
+        } else {
+            return UITableViewCell()
         }
-                
-        return cell
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height * 0.4
+        if tableView.tag == 1 {
+            return view.frame.height * 0.36
+        } else if tableView.tag == 2 {
+            return view.frame.height * 0.17
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.tag == 1 {
+            let restaurant = popularRestaurantList[indexPath.row]
+            showAlert(title: restaurant.name + " Clicked", message: restaurant.description, buttonTitle: "OK")
+        } else if tableView.tag == 2 {
+            let restaurant = recentlyItemsRestaurantList[indexPath.row]
+            showAlert(title: restaurant.name + " Clicked", message: restaurant.description, buttonTitle: "OK")
+        }
     }
     
     

@@ -20,14 +20,6 @@ class HomeScreenViewController: UIViewController {
     
     let viewModel = HomeScreenViewModel()
     
-    lazy var scrollView : UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentSize = CGSize(width: AppConstants.deviceWidth, height: AppConstants.deviceHeight * 3)
-        return scrollView
-        
-    }()
-    
     let greetingLabel: UILabel = {
         let label = UILabel()
         label.text = AppTexts.greetingText
@@ -36,6 +28,18 @@ class HomeScreenViewController: UIViewController {
         label.textAlignment = .center
         label.textColor = AppColors.primaryFontColor
         return label
+    }()
+    
+    lazy var scrollView : UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    let contentView: UIView = {
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
     }()
     
     lazy var cartButton: UIButton = {
@@ -84,18 +88,17 @@ class HomeScreenViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: AppConstants.deviceWidth * 0.30, height: 150)
+        layout.itemSize = CGSize(width: AppConstants.deviceWidth * 0.30, height: AppConstants.deviceHeight * 0.18)
         
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = AppColors.backgroundColor
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.tag = 1
-        collectionView.backgroundColor = .white
         collectionView.isScrollEnabled = true
         collectionView.isUserInteractionEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = AppColors.backgroundColor
         
+        collectionView.tag = 1
         
         return collectionView
     }()
@@ -106,7 +109,39 @@ class HomeScreenViewController: UIViewController {
         tableView.backgroundColor = AppColors.backgroundColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
         tableView.tag = 1
+        return tableView
+    }()
+    
+    
+    lazy var mostPopularCollectionView : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 15
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: AppConstants.deviceWidth * 0.6, height: AppConstants.deviceHeight * 0.3)
+
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = AppColors.backgroundColor
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = true
+        collectionView.isUserInteractionEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        collectionView.tag = 2
+        
+        return collectionView
+    }()
+    
+    
+    lazy var recentItemsTableView : UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = AppColors.backgroundColor
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
+        tableView.tag = 2
         return tableView
     }()
     
@@ -121,7 +156,7 @@ class HomeScreenViewController: UIViewController {
     
     let mostPopularRestaurantsViewTitleLabel : UILabel  = {
         let label = UILabel()
-        label.text = AppTexts.popularRestaurantsTitleText
+        label.text = AppTexts.mostPopularRestaurantsTitleText
         label.font = AppFonts.titleText
         label.textAlignment = .center
         label.textColor = AppColors.primaryFontColor
@@ -130,7 +165,7 @@ class HomeScreenViewController: UIViewController {
     
     let recentItemsRestaurantsViewTitleLabel : UILabel  = {
         let label = UILabel()
-        label.text = AppTexts.popularRestaurantsTitleText
+        label.text = AppTexts.recentItemsRestaurantsTitleText
         label.font = AppFonts.titleText
         label.textAlignment = .center
         label.textColor = AppColors.primaryFontColor
@@ -190,6 +225,8 @@ class HomeScreenViewController: UIViewController {
         
         addScroolView()
         
+        addContentView()
+        
         addLocationStack()
         
         addSearchBar()
@@ -200,9 +237,15 @@ class HomeScreenViewController: UIViewController {
         
         addPopularRestaurantsTableView()
         
+        addMostPopularCollectionViewTitle()
         
+        addMostPopularCollectionView()
         
+        addRecentItemsTableViewTitle()
         
+        addRecentItemsTableView()
+
+
         
     }
     
@@ -244,7 +287,7 @@ class HomeScreenViewController: UIViewController {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { resturants in
                 self.mostPopularRestaurantList = resturants
-                //self.tableView.reloadData()
+                self.mostPopularCollectionView.reloadData()
             }
             .disposed(by: disposeBag)
         
@@ -259,7 +302,7 @@ class HomeScreenViewController: UIViewController {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { resturants in
                 self.recentlyItemsRestaurantList = resturants
-                //self.tableView.reloadData()
+                self.recentItemsTableView.reloadData()
             }
             .disposed(by: disposeBag)
         
@@ -293,25 +336,47 @@ class HomeScreenViewController: UIViewController {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -20),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            stackView.heightAnchor.constraint(equalToConstant: AppConstants.deviceHeight * 0.07)
         ])
+        
     }
     
     func addScroolView() {
+        
         view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+    }
+    
+    
+    func addContentView() {
+        
+        scrollView.addSubview(contentView)
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: AppConstants.deviceHeight * 2.5)
+        ])
+        
     }
     
     
     func addLocationStack() {
+        
         let horizontalStackView = UIStackView(arrangedSubviews: [currentLocationLabel, openLocationButton])
         horizontalStackView.axis = .horizontal
         horizontalStackView.alignment = .center
@@ -326,15 +391,18 @@ class HomeScreenViewController: UIViewController {
         verticalStackView.alignment = .leading
         verticalStackView.spacing = 5
         
-        scrollView.addSubview(verticalStackView)
+        contentView.addSubview(verticalStackView)
         
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            verticalStackView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 20),
-            verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            verticalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            verticalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             openLocationButton.widthAnchor.constraint(equalToConstant: 18),
             openLocationButton.heightAnchor.constraint(equalToConstant: 18),
         ])
+        
     }
     
     func addSearchBar() {
@@ -348,25 +416,26 @@ class HomeScreenViewController: UIViewController {
         stackView.alignment = .leading
         stackView.spacing = 5
         
-        scrollView.addSubview(stackView)
+        contentView.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: currentLocationLabel.bottomAnchor, constant: 20),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+            searchBar.topAnchor.constraint(equalTo: self.currentLocationLabel.bottomAnchor, constant: 20),
+            searchBar.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            searchBar.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -5),
         ])
+        
     }
     
     func addCategoryCollectionView() {
         
-        scrollView.addSubview(categoryCollectionView)
+        contentView.addSubview(categoryCollectionView)
         
         NSLayoutConstraint.activate([
             categoryCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 20),
-            categoryCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
-            categoryCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -10),
-            categoryCollectionView.heightAnchor.constraint(equalToConstant: 160)
+            categoryCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            categoryCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
+            categoryCollectionView.heightAnchor.constraint(equalToConstant: AppConstants.deviceHeight * 0.18)
         ])
         
         categoryCollectionView.dataSource = self
@@ -383,32 +452,105 @@ class HomeScreenViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         
-        scrollView.addSubview(stackView)
+        contentView.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
         ])
         
     }
     
     func addPopularRestaurantsTableView() {
         
-        scrollView.addSubview(popularRestaurantsTableView)
+        contentView.addSubview(popularRestaurantsTableView)
+        
         
         NSLayoutConstraint.activate([
             popularRestaurantsTableView.topAnchor.constraint(equalTo: popularResturantsViewTitleLabel.bottomAnchor, constant: 20),
-            popularRestaurantsTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            popularRestaurantsTableView.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -20),
-            popularRestaurantsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            popularRestaurantsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            popularRestaurantsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            popularRestaurantsTableView.heightAnchor.constraint(equalToConstant: AppConstants.deviceHeight * 1.1),
         ])
         
         popularRestaurantsTableView.dataSource = self
         popularRestaurantsTableView.delegate = self
         
         popularRestaurantsTableView.register(PopularRestaurantViewCell.self, forCellReuseIdentifier: PopularRestaurantViewCell.identifier)
+        
+        
+    }
+    
+    func addMostPopularCollectionViewTitle() {
+        
+        let stackView = UIStackView(arrangedSubviews: [mostPopularRestaurantsViewTitleLabel, mostPopularRestaurantsViewTitleViewAllButon])
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        
+        contentView.addSubview(stackView)
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: popularRestaurantsTableView.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+        ])
+        
+    }
+    
+    func addMostPopularCollectionView() {
+        
+        contentView.addSubview(mostPopularCollectionView)
+        
+        NSLayoutConstraint.activate([
+            mostPopularCollectionView.topAnchor.constraint(equalTo: mostPopularRestaurantsViewTitleLabel.bottomAnchor, constant: 20),
+            mostPopularCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            mostPopularCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
+            mostPopularCollectionView.heightAnchor.constraint(equalToConstant: AppConstants.deviceHeight * 0.3)
+        ])
+        
+        mostPopularCollectionView.dataSource = self
+        mostPopularCollectionView.delegate = self
+        
+        mostPopularCollectionView.register(MostPopularViewCell.self, forCellWithReuseIdentifier: MostPopularViewCell.identifier)
+        
+    }
+    
+    func addRecentItemsTableViewTitle() {
+        
+        let stackView = UIStackView(arrangedSubviews: [recentItemsRestaurantsViewTitleLabel, recentItemsRestaurantsViewTitleViewAllButon])
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        
+        contentView.addSubview(stackView)
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: mostPopularCollectionView.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+        ])
+        
+    }
+    
+    func addRecentItemsTableView() {
+        
+        contentView.addSubview(recentItemsTableView)
+        
+        NSLayoutConstraint.activate([
+            recentItemsTableView.topAnchor.constraint(equalTo: recentItemsRestaurantsViewTitleLabel.bottomAnchor, constant: 20),
+            recentItemsTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            recentItemsTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            recentItemsTableView.heightAnchor.constraint(equalToConstant: AppConstants.deviceHeight * 1.5),
+        ])
+        
+        recentItemsTableView.dataSource = self
+        recentItemsTableView.delegate = self
+        
+        recentItemsTableView.register(RecentItemsViewCell.self, forCellReuseIdentifier: RecentItemsViewCell.identifier)
+        
         
     }
     

@@ -1,17 +1,16 @@
 //
-//  PopularRestaurantViewCell.swift
+//  MostPopularViewCell.swift
 //  FoodDelivery
 //
-//  Created by Ali Çolak on 26.10.2023.
+//  Created by Ali Çolak on 1.11.2023.
 //
 
 import UIKit
 import Kingfisher
 
-
-class PopularRestaurantViewCell: UITableViewCell {
+class MostPopularViewCell: UICollectionViewCell {
     
-    static let identifier = "PopularRestaurantViewCell"
+    static let identifier = "MostPopularViewCell"
     
     private let restaurentImageView : UIImageView = {
         let image = UIImageView()
@@ -47,15 +46,6 @@ class PopularRestaurantViewCell: UITableViewCell {
         return label
     }()
     
-    private let restaurentRatingCountLabel : UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = AppFonts.placeholderFont
-        label.textColor = AppColors.placeholderFontColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private let restaurentTypeLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -75,14 +65,10 @@ class PopularRestaurantViewCell: UITableViewCell {
     }()
     
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        contentView.backgroundColor = AppColors.backgroundColor
+    override init(frame : CGRect) {
+        super.init(frame: frame)
         
         addCellComponents()
-        
         setCellLayouts()
         
     }
@@ -95,57 +81,51 @@ class PopularRestaurantViewCell: UITableViewCell {
         self.restaurentImageView.kf.setImage(with: URL(string: restaurant.image))
         self.restaurentNameLabel.text = restaurant.name
         self.restaurentRatingLabel.text = String(restaurant.rating)
-        self.restaurentRatingCountLabel.text = "(\(String(restaurant.ratingCount)) ratings)"
         self.restaurentTypeLabel.text = "Cafe"
         self.restaurantCategoryLabel.text = category.name
     }
     
+    
     func addCellComponents(){
-        
         contentView.addSubview(restaurentImageView)
+        
         contentView.addSubview(restaurentNameLabel)
         
-        contentView.addSubview(restaurantRatingIcon)
-        contentView.addSubview(restaurentRatingLabel)
-        contentView.addSubview(restaurentRatingCountLabel)
         contentView.addSubview(restaurentTypeLabel)
         contentView.addSubview(restaurantCategoryLabel)
-        
+        contentView.addSubview(restaurantRatingIcon)
+        contentView.addSubview(restaurentRatingLabel)
     }
     
     
     func setCellLayouts(){
-        
         NSLayoutConstraint.activate([
             restaurentImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            restaurentImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            restaurentImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            restaurentImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height * 5),
+            restaurentImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height * 0.65),
+            restaurentImageView.widthAnchor.constraint(equalToConstant: contentView.frame.width),
 
             
             restaurentNameLabel.topAnchor.constraint(equalTo: restaurentImageView.bottomAnchor,constant: 15),
             restaurentNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor , constant: 10),
             
+            restaurentTypeLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
+            restaurentTypeLabel.leftAnchor.constraint(equalTo: restaurentNameLabel.leftAnchor),
+            
+            restaurantCategoryLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
+            restaurantCategoryLabel.leftAnchor.constraint(equalTo: restaurentTypeLabel.rightAnchor,constant: 20),
+            
             restaurantRatingIcon.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurantRatingIcon.leftAnchor.constraint(equalTo: restaurentNameLabel.leftAnchor),
-            restaurantRatingIcon.heightAnchor.constraint(equalToConstant: 17),
-            restaurantRatingIcon.widthAnchor.constraint(equalToConstant: 17),
-
+            restaurantRatingIcon.leftAnchor.constraint(equalTo: restaurantCategoryLabel.rightAnchor,constant: 20),
+            restaurantRatingIcon.heightAnchor.constraint(equalToConstant: 15),
+            restaurantRatingIcon.widthAnchor.constraint(equalToConstant: 15),
             
             restaurentRatingLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
             restaurentRatingLabel.leftAnchor.constraint(equalTo: restaurantRatingIcon.rightAnchor,constant: 3),
-            
-            restaurentRatingCountLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurentRatingCountLabel.leftAnchor.constraint(equalTo: restaurentRatingLabel.rightAnchor,constant: 3),
-            
-            restaurentTypeLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurentTypeLabel.leftAnchor.constraint(equalTo: restaurentRatingCountLabel.rightAnchor,constant: 5),
-            
-            restaurantCategoryLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurantCategoryLabel.leftAnchor.constraint(equalTo: restaurentTypeLabel.rightAnchor,constant: 10),
 
+            
+            
         ])
-        
     }
+
     
 }

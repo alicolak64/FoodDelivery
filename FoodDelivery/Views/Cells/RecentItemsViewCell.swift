@@ -1,18 +1,18 @@
 //
-//  PopularRestaurantViewCell.swift
+//  RecentItemsViewCell.swift
 //  FoodDelivery
 //
-//  Created by Ali Çolak on 26.10.2023.
+//  Created by Ali Çolak on 1.11.2023.
 //
 
 import UIKit
 import Kingfisher
 
 
-class PopularRestaurantViewCell: UITableViewCell {
+class RecentItemsViewCell: UITableViewCell {
     
-    static let identifier = "PopularRestaurantViewCell"
-    
+    static let identifier = "RecentItemsViewCell"
+
     private let restaurentImageView : UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -103,13 +103,15 @@ class PopularRestaurantViewCell: UITableViewCell {
     func addCellComponents(){
         
         contentView.addSubview(restaurentImageView)
+        
         contentView.addSubview(restaurentNameLabel)
+        
+        contentView.addSubview(restaurentTypeLabel)
+        contentView.addSubview(restaurantCategoryLabel)
         
         contentView.addSubview(restaurantRatingIcon)
         contentView.addSubview(restaurentRatingLabel)
         contentView.addSubview(restaurentRatingCountLabel)
-        contentView.addSubview(restaurentTypeLabel)
-        contentView.addSubview(restaurantCategoryLabel)
         
     }
     
@@ -117,35 +119,38 @@ class PopularRestaurantViewCell: UITableViewCell {
     func setCellLayouts(){
         
         NSLayoutConstraint.activate([
+            
             restaurentImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             restaurentImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            restaurentImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            restaurentImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height * 5),
+            restaurentImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height * 2.5),
+            restaurentImageView.widthAnchor.constraint(equalToConstant: contentView.frame.width * 0.3),
 
             
-            restaurentNameLabel.topAnchor.constraint(equalTo: restaurentImageView.bottomAnchor,constant: 15),
-            restaurentNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor , constant: 10),
-            
-            restaurantRatingIcon.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurantRatingIcon.leftAnchor.constraint(equalTo: restaurentNameLabel.leftAnchor),
-            restaurantRatingIcon.heightAnchor.constraint(equalToConstant: 17),
-            restaurantRatingIcon.widthAnchor.constraint(equalToConstant: 17),
+            restaurentNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            restaurentNameLabel.leftAnchor.constraint(equalTo: restaurentImageView.rightAnchor , constant: 20),
 
-            
-            restaurentRatingLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurentRatingLabel.leftAnchor.constraint(equalTo: restaurantRatingIcon.rightAnchor,constant: 3),
-            
-            restaurentRatingCountLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurentRatingCountLabel.leftAnchor.constraint(equalTo: restaurentRatingLabel.rightAnchor,constant: 3),
             
             restaurentTypeLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurentTypeLabel.leftAnchor.constraint(equalTo: restaurentRatingCountLabel.rightAnchor,constant: 5),
+            restaurentTypeLabel.leftAnchor.constraint(equalTo: restaurentImageView.rightAnchor , constant: 20),
             
             restaurantCategoryLabel.topAnchor.constraint(equalTo: restaurentNameLabel.bottomAnchor,constant: 10),
-            restaurantCategoryLabel.leftAnchor.constraint(equalTo: restaurentTypeLabel.rightAnchor,constant: 10),
+            restaurantCategoryLabel.leftAnchor.constraint(equalTo: restaurentTypeLabel.rightAnchor,constant: 5),
+
+            restaurantRatingIcon.topAnchor.constraint(equalTo: restaurentTypeLabel.bottomAnchor,constant: 10),
+            restaurantRatingIcon.leftAnchor.constraint(equalTo: restaurentImageView.rightAnchor, constant: 20),
+            restaurantRatingIcon.heightAnchor.constraint(equalToConstant: 14),
+            restaurantRatingIcon.widthAnchor.constraint(equalToConstant: 14),
+
+            
+            restaurentRatingLabel.topAnchor.constraint(equalTo: restaurentTypeLabel.bottomAnchor,constant: 10),
+            restaurentRatingLabel.leftAnchor.constraint(equalTo: restaurantRatingIcon.rightAnchor,constant: 3),
+            
+            restaurentRatingCountLabel.topAnchor.constraint(equalTo: restaurentTypeLabel.bottomAnchor,constant: 10),
+            restaurentRatingCountLabel.leftAnchor.constraint(equalTo: restaurentRatingLabel.rightAnchor,constant: 3),
+            
+
 
         ])
         
     }
-    
 }
