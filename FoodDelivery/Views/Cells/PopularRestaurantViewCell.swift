@@ -120,7 +120,7 @@ class PopularRestaurantViewCell: UITableViewCell {
             restaurentImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             restaurentImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             restaurentImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            restaurentImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height * 5),
+            restaurentImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height * AppConstants.deviceHeight / 175),
 
             
             restaurentNameLabel.topAnchor.constraint(equalTo: restaurentImageView.bottomAnchor,constant: 15),
