@@ -3,7 +3,7 @@
 ## Description
 
 This app simulates the home tab inside the Meal Monkey app. 
-Also developed for Codespace-Pazarama iOS bootcamp.  
+Also developed for Coderspace-Pazarama iOS Bootcamp.  
 
 ## Design
 
