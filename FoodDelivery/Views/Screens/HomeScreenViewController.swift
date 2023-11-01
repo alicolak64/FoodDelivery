@@ -20,6 +20,13 @@ class HomeScreenViewController: UIViewController {
     
     let viewModel = HomeScreenViewModel()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+        indicator.hidesWhenStopped = true
+        indicator.color = AppColors.mainColor
+        return indicator
+    }()
+    
     let greetingLabel: UILabel = {
         let label = UILabel()
         label.text = AppTexts.greetingText
@@ -120,7 +127,7 @@ class HomeScreenViewController: UIViewController {
         layout.minimumInteritemSpacing = 15
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: AppConstants.deviceWidth * 0.6, height: AppConstants.deviceHeight * 0.3)
-
+        
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = AppColors.backgroundColor
@@ -221,6 +228,8 @@ class HomeScreenViewController: UIViewController {
         
         viewModel.requestAllData()
         
+        addActivityIndicator()
+        
         addGreetingStack()
         
         addScroolView()
@@ -244,8 +253,8 @@ class HomeScreenViewController: UIViewController {
         addRecentItemsTableViewTitle()
         
         addRecentItemsTableView()
-
-
+        
+        
         
     }
     
@@ -317,13 +326,18 @@ class HomeScreenViewController: UIViewController {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe { isLoading in
                 if isLoading {
-                    print("Open Animated")
+                    self.activityIndicator.startAnimating()
                 } else {
-                    print("Close Animated")
-                    
+                    self.activityIndicator.stopAnimating()
                 }
             }
             .disposed(by: disposeBag)
+    }
+    
+    
+    func addActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.center = CGPoint(x: view.bounds.size.width - 40, y: 40)
     }
     
     
