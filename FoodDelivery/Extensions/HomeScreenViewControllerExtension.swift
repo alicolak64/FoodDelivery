@@ -6,6 +6,87 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+
+extension HomeScreenViewController{
+    
+    func setupBindings() {
+        
+        viewModel.categories
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { categories in
+                self.categoryList = categories
+                self.categoryCollectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.categoriesError
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.popularRestaurants
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { resturants in
+                self.popularRestaurantList = resturants
+                self.popularRestaurantsTableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.allResturantsError
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.mostPopularRestaurants
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { resturants in
+                self.mostPopularRestaurantList = resturants
+                self.mostPopularCollectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.mostPopularRestaurantsError
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.recentlyItemsRestaurants
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { resturants in
+                self.recentlyItemsRestaurantList = resturants
+                self.recentItemsTableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.recentlyItemsRestaurantsError
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.loading
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { isLoading in
+                if isLoading {
+                    self.activityIndicator.startAnimating()
+                } else {
+                    self.activityIndicator.stopAnimating()
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+}
 
 extension HomeScreenViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
